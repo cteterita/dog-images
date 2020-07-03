@@ -1,9 +1,8 @@
-
 function fetchDogs(n) {
     fetch(`https://dog.ceo/api/breeds/image/random/${n}`)
         .then(response => response.json())
         .then(parsedResponse => displayDogs(parsedResponse))
-        .catch('Unknown error! Try again later.');
+        .catch(e => alert('Unknown error! Try again later.'));
 }
 
 function displayDogs(response) {
@@ -20,8 +19,9 @@ function listenToForm() {
         let n = parseInt($('#numDogs').val());
         if (isNaN(n) || n < 1 || n > 50) { // Make sure it's a number, and it's within the range
             alert("Pick a number between 1 and 50.");
+        } else {
+            fetchDogs(n);
         }
-        fetchDogs(n);
     });
 }
 
