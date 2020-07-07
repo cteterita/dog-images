@@ -1,0 +1,8 @@
+.hidden {
+    display: none;
+}
+
+.results-img {
+    max-width: 300px;
+    display: block;
+}

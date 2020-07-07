@@ -1,16 +1,17 @@
 function fetchDogs(n) {
     fetch(`https://dog.ceo/api/breeds/image/random/${n}`)
         .then(response => response.json())
-        .then(parsedResponse => displayDogs(parsedResponse))
+        .then(parsedResponse => displayResults(parsedResponse))
         .catch(e => alert('Unknown error! Try again later.'));
 }
 
-function displayDogs(response) {
-    $('#image-list').html('<h2>Dogs Dogs Dogs!!!</h2>'); // Removes content from previous searches
-    response.message.forEach(img => {
+function displayResults(responseJson) {
+    $('.results').html('<h2>Dogs Dogs Dogs!!!</h2>'); // Removes content from previous searches
+    responseJson.message.forEach(img => {
         console.log(img);
-        $('#image-list').append(`<p><img src='${img}' alt='random dog' width='300'></p>`);
+        $('.results').append(`<img src='${img}' class='results-img' alt='random dog'>`);
     });
+    $('.results').removeClass('hidden');
 }
 
 function listenToForm() {
